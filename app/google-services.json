@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "593960394575",
+    "project_id": "kalavidara-balaga-5c390",
+    "storage_bucket": "kalavidara-balaga-5c390.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593960394575:android:50aac23bc8b4445f41ef3a",
+        "android_client_info": {
+          "package_name": "com.example.kalavidara_balaga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593960394575-lf34m5i6ojj0v6qvv4dl52sign11udnu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kalavidara_balaga",
+            "certificate_hash": "5ed58fecb48c6e3445acedaf8408d868ed5a6e25"
+          }
+        },
+        {
+          "client_id": "593960394575-n4htrgifftu4rrieouiidiq6d5evbnoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo41uBcx_U7J2NXDECIZpeyyzhkZfxojc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593960394575-n4htrgifftu4rrieouiidiq6d5evbnoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

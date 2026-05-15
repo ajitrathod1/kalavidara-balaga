@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#8D0A0A</color>
+    <color name="primary_variant">#5C0000</color>
+    <color name="secondary">#D4AF37</color>
+    <color name="secondary_variant">#A68442</color>
+    <color name="background">#FFF9F0</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="success">#2E7D32</color>
+    <color name="chocolate_brown">#4E2A12</color>
+    <color name="black">#1A1A1A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey_text">#757575</color>
+    <color name="divider">#F0F0F0</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="gold_alpha">#33D4AF37</color>
+    <color name="maroon_alpha">#1A8D0A0A</color>
+</resources>
