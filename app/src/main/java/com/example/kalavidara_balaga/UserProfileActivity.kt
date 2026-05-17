@@ -3,6 +3,7 @@ package com.example.kalavidara_balaga
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.kalavidara_balaga.databinding.ActivityUserProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,6 +26,11 @@ class UserProfileActivity : AppCompatActivity() {
         if (currentUser != null) {
             binding.tvUserEmail.text = currentUser.email ?: "No Email"
             
+            Glide.with(this)
+                .load("https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&w=200")
+                .circleCrop()
+                .into(binding.ivProfilePic)
+
             // Fetch name from Firestore
             db.collection("users").document(currentUser.uid)
                 .get()
@@ -47,15 +53,18 @@ class UserProfileActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnLogout.setOnClickListener {
-            auth.signOut()
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
-        }
+        binding.btnLogout.setOnClickListener { logout() }
+        binding.btnLogoutAction.setOnClickListener { logout() }
 
         setupBottomNavigation()
+    }
+
+    private fun logout() {
+        auth.signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 
     private fun checkIfTroupeExists(userId: String) {
