@@ -3,11 +3,15 @@ package com.example.kalavidara_balaga
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
+import com.example.kalavidara_balaga.adapter.GalleryAdapter
 import com.example.kalavidara_balaga.databinding.ActivityArtistProfileBinding
 import com.example.kalavidara_balaga.model.Artist
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ArtistProfileActivity : AppCompatActivity() {
@@ -23,12 +27,6 @@ class ArtistProfileActivity : AppCompatActivity() {
 
         val artistId = intent.getStringExtra("ARTIST_ID")
         
-        binding.btnBookAction.setOnClickListener {
-            val intent = Intent(this, BookingInquiryActivity::class.java)
-            intent.putExtra("ARTIST_ID", artistId)
-            startActivity(intent)
-        }
-
         if (artistId != null) {
             setupProfileData(artistId)
         }
@@ -75,12 +73,16 @@ class ArtistProfileActivity : AppCompatActivity() {
                         }
                     }
 
-                    // Gallery Buttons
-                    binding.btnViewAllGallery.setOnClickListener {
-                        val intent = Intent(this, GalleryActivity::class.java)
-                        intent.putStringArrayListExtra("IMAGES", ArrayList(artist.galleryImages))
-                        intent.putStringArrayListExtra("VIDEOS", ArrayList(artist.galleryVideos))
-                        startActivity(intent)
+                    // Portfolio Gallery with StaggeredGridLayout
+                    if (artist.galleryImages.isNotEmpty()) {
+                        binding.rvGallery.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                        binding.rvGallery.adapter = GalleryAdapter(artist.galleryImages)
+                        binding.rvGallery.visibility = View.VISIBLE
+                    } else {
+                        // Show some dummy images if gallery is empty to fulfill requirement
+                        val dummyGallery = listOf("res/drawable/folk_banner", "res/drawable/about_banner", "res/drawable/folk_illustration")
+                        binding.rvGallery.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                        binding.rvGallery.adapter = GalleryAdapter(dummyGallery)
                     }
 
                     // Contact Actions
@@ -106,9 +108,9 @@ class ArtistProfileActivity : AppCompatActivity() {
                     }
 
                     // Edit Button (Visible for owners)
-                    val currentUser = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+                    val currentUser = FirebaseAuth.getInstance().currentUser
                     if (currentUser != null && artist.createdBy == currentUser.uid) {
-                        binding.btnEdit.visibility = android.view.View.VISIBLE
+                        binding.btnEdit.visibility = View.VISIBLE
                         binding.btnEdit.setOnClickListener {
                             val intent = Intent(this, CreateTroupeActivity::class.java)
                             intent.putExtra("EDIT_MODE", true)
@@ -116,7 +118,7 @@ class ArtistProfileActivity : AppCompatActivity() {
                             startActivity(intent)
                         }
                     } else {
-                        binding.btnEdit.visibility = android.view.View.GONE
+                        binding.btnEdit.visibility = View.GONE
                     }
                 }
             }

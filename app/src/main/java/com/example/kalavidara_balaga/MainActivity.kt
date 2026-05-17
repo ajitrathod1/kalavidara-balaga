@@ -23,17 +23,16 @@ class MainActivity : AppCompatActivity() {
 
         addDummyDataIfEmpty()
         fetchArtistsFromFirestore()
+
+        binding.cardSearch.setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
+        }
         
         // Setup Bottom Navigation
         binding.bottomNavigation.selectedItemId = R.id.nav_home
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.nav_home -> true
-                R.id.nav_bookings -> {
-                    startActivity(Intent(this, BookingsActivity::class.java))
-                    finish()
-                    true
-                }
                 R.id.nav_profile -> {
                     startActivity(Intent(this, UserProfileActivity::class.java))
                     finish()
@@ -53,28 +52,32 @@ class MainActivity : AppCompatActivity() {
                         "experience" to "15", "membersCount" to "12-15", "status" to "approved",
                         "imageUrl" to "res/drawable/folk_banner",
                         "galleryImages" to listOf("res/drawable/folk_banner", "res/drawable/about_banner", "res/drawable/folk_illustration"),
-                        "about" to "We are a professional Dollu Kunitha troupe from Tumakuru. We perform at weddings, festivals, temple events and corporate shows across Karnataka.", "phone" to "8123456789"
+                        "about" to "We are a professional Dollu Kunitha troupe from Tumakuru. We perform at weddings, festivals, temple events and corporate shows across Karnataka.", "phone" to "8123456789",
+                        "equipment" to "10 Drums (Dollu), Traditional Costumes, Sound System"
                     ),
                     mapOf(
                         "name" to "Udupi Yakshagana Balaga", "district" to "Udupi", "artForm" to "Yakshagana",
                         "experience" to "25", "membersCount" to "20-25", "status" to "approved",
                         "imageUrl" to "res/drawable/about_banner",
                         "galleryImages" to listOf("res/drawable/folk_banner", "res/drawable/about_banner", "res/drawable/folk_illustration"),
-                        "about" to "Traditional Yakshagana Balaga with a rich history of over 25 years in presenting Tenkutittu and Badagutittu styles.", "phone" to "7012345678"
+                        "about" to "Traditional Yakshagana Balaga with a rich history of over 25 years in presenting Tenkutittu and Badagutittu styles.", "phone" to "7012345678",
+                        "equipment" to "Yakshagana Headgear (Kireeta), Chande, Maddale, Ornaments"
                     ),
                     mapOf(
                         "name" to "Kedarlinga Veeragase", "district" to "Chikkamagaluru", "artForm" to "Veeragase",
                         "experience" to "12", "membersCount" to "8-10", "status" to "approved",
                         "imageUrl" to "res/drawable/folk_banner",
                         "galleryImages" to listOf("res/drawable/folk_illustration", "res/drawable/folk_banner", "res/drawable/about_banner"),
-                        "about" to "Energetic Veeragase performers known for their powerful Shiva Stuti and traditional dance forms.", "phone" to "9900887766"
+                        "about" to "Energetic Veeragase performers known for their powerful Shiva Stuti and traditional dance forms.", "phone" to "9900887766",
+                        "equipment" to "Swords, Trident (Trishula), Cymbals, Sambala"
                     ),
                     mapOf(
                         "name" to "Haveri Janapada Balaga", "district" to "Haveri", "artForm" to "Folk Singing",
                         "experience" to "20", "membersCount" to "4-6", "status" to "approved",
                         "imageUrl" to "res/drawable/folk_illustration",
                         "galleryImages" to listOf("res/drawable/about_banner", "res/drawable/folk_illustration", "res/drawable/folk_banner"),
-                        "about" to "Soulful folk melodies and Janapada songs that bring out the true essence of rural Karnataka.", "phone" to "8877665544"
+                        "about" to "Soulful folk melodies and Janapada songs that bring out the true essence of rural Karnataka.", "phone" to "8877665544",
+                        "equipment" to "Harmonium, Tabla, Manjira, Tambura"
                     )
                 )
                 

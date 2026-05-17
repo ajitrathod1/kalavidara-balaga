@@ -23,7 +23,7 @@ class ArtistAdapter(
     override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
         val artist = artists[position]
         holder.binding.tvTroupeName.text = artist.name
-        holder.binding.tvTroupeLocation.text = artist.location
+        holder.binding.tvTroupeLocation.text = if (artist.district.isNotEmpty()) artist.district else artist.location
         holder.binding.tvArtForm.text = artist.artForm
         holder.binding.tvRating.text = "4.8" 
         

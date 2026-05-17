@@ -177,7 +177,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
-                        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_bookings" app:tint="@color/primary" />
+                        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_about" app:tint="@color/primary" />
                         <TextView android:id="@+id/tvExpVal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textStyle="bold" android:textColor="@color/black" android:layout_marginTop="4dp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Experience" android:textSize="10sp" android:textColor="@color/grey_text" />
                     </LinearLayout>
@@ -242,7 +242,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Equipment &amp; Instruments"
+                android:text="Instruments &amp; Equipment"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -251,53 +251,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="#F5F5F5">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/maroon_alpha">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="12dp"
+                    android:padding="16dp"
                     android:gravity="center_vertical">
-                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_about" app:tint="@color/primary" />
-                    <TextView android:id="@+id/tvEquipment" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="--" android:textColor="@color/black" android:textSize="14sp" />
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_about" app:tint="@color/primary" />
+                    <TextView android:id="@+id/tvEquipment" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:text="--" android:textColor="@color/primary" android:textStyle="bold" android:textSize="14sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Gallery -->
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gallery"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/btnViewAllGallery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="View All"
-                    android:textColor="@color/primary"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+                android:layout_marginTop="24dp"
+                android:text="Portfolio Gallery"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <!-- Simple horizontal gallery mock -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGallery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-                <com.google.android.material.card.MaterialCardView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:layout_marginEnd="8dp" app:cardCornerRadius="8dp" app:cardElevation="0dp"><ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/folk_banner" android:scaleType="centerCrop"/></com.google.android.material.card.MaterialCardView>
-                <com.google.android.material.card.MaterialCardView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:layout_marginEnd="8dp" app:cardCornerRadius="8dp" app:cardElevation="0dp"><ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/about_banner" android:scaleType="centerCrop"/></com.google.android.material.card.MaterialCardView>
-                <com.google.android.material.card.MaterialCardView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" app:cardCornerRadius="8dp" app:cardElevation="0dp"><ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/folk_illustration" android:scaleType="centerCrop"/></com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_gallery_photo" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -315,22 +299,23 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCallAction"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="50dp"
-            android:text="Call"
+            android:layout_weight="1"
+            android:text="Call Now"
             app:icon="@android:drawable/stat_sys_phone_call"
-            app:iconTint="@color/primary"
-            android:textColor="@color/primary"
-            app:strokeColor="@color/divider"
+            app:iconTint="@color/white"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/primary"
             app:cornerRadius="12dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnWhatsAppAction"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
             android:text="WhatsApp"
             app:icon="@drawable/ic_search"
             app:iconTint="@color/success"
@@ -338,20 +323,6 @@
             app:strokeColor="@color/divider"
             app:cornerRadius="12dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBookAction"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:text="Book Now"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:backgroundTint="@color/primary"
-            app:cornerRadius="12dp"
-            app:icon="@drawable/ic_bookings"
-            app:iconGravity="textStart"
-            app:iconPadding="8dp" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Check if user is already logged in
         if (auth.currentUser != null) {
-            navigateToMain()
+            checkUserDocAndNavigate()
         }
 
         binding.btnLogin.setOnClickListener {
@@ -88,17 +88,13 @@ class LoginActivity : AppCompatActivity() {
                     )
                     db.collection("users").document(user.uid).set(userMap)
                 }
-                navigateToMain()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
             .addOnFailureListener { e ->
-                // Even on failure (like permission), if we're authed, try going to main
-                navigateToMain()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
-    }
-
-    private fun navigateToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
     }
 
     private fun signInWithGoogle() {

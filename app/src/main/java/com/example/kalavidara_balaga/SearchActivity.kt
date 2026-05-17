@@ -28,10 +28,11 @@ class SearchActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener { finish() }
 
         setupDistrictSpinner()
+        setupArtTypeSpinner()
         setupBottomNavigation()
-        setupSearchAndChips()
+        setupSearchLogic()
         
-        binding.rvArtists.layoutManager = LinearLayoutManager(this)
+        binding.rvArtists.layoutManager = androidx.recyclerview.widget.StaggeredGridLayoutManager(2, androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL)
         
         loadAllArtists()
     }
@@ -47,7 +48,18 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupSearchAndChips() {
+    private fun setupArtTypeSpinner() {
+        val artForms = arrayOf("All Art Forms", "Dollu Kunitha", "Yakshagana", "Pooja Kunitha", "Veeragase", "Kamsale", "Suggi Kunitha", "Goravara Kunitha", "Bhootha Aradhane")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, artForms)
+        binding.spinnerArtType.setAdapter(adapter)
+
+        binding.spinnerArtType.setOnItemClickListener { _, _, position, _ ->
+            selectedArtType = if (position == 0) "" else artForms[position]
+            applyFilters()
+        }
+    }
+
+    private fun setupSearchLogic() {
         binding.etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -55,40 +67,6 @@ class SearchActivity : AppCompatActivity() {
             }
             override fun afterTextChanged(s: Editable?) {}
         })
-
-        binding.chipAll.setOnClickListener { 
-            selectedArtType = ""
-            updateChipUI(it.id)
-            applyFilters() 
-        }
-        binding.chipDollu.setOnClickListener { 
-            selectedArtType = "Dollu Kunitha"
-            updateChipUI(it.id)
-            applyFilters() 
-        }
-        binding.chipPooja.setOnClickListener { 
-            selectedArtType = "Pooja Kunitha"
-            updateChipUI(it.id)
-            applyFilters() 
-        }
-        binding.chipYakshagana.setOnClickListener { 
-            selectedArtType = "Yakshagana"
-            updateChipUI(it.id)
-            applyFilters() 
-        }
-    }
-
-    private fun updateChipUI(selectedId: Int) {
-        val chips = listOf(binding.chipAll, binding.chipDollu, binding.chipPooja, binding.chipYakshagana)
-        chips.forEach { chip ->
-            if (chip.id == selectedId) {
-                chip.setBackgroundResource(R.drawable.circle_primary)
-                chip.setTextColor(resources.getColor(R.color.white))
-            } else {
-                chip.setBackgroundResource(R.drawable.bg_rounded_grey)
-                chip.setTextColor(resources.getColor(R.color.black))
-            }
-        }
     }
 
     private fun loadAllArtists() {
@@ -113,7 +91,9 @@ class SearchActivity : AppCompatActivity() {
         val query = binding.etSearch.text.toString().lowercase()
         
         val filteredList = allArtists.filter { artist ->
-            val matchesDistrict = selectedDistrict.isEmpty() || artist.location.contains(selectedDistrict, ignoreCase = true)
+            val matchesDistrict = selectedDistrict.isEmpty() || 
+                    artist.district.contains(selectedDistrict, ignoreCase = true) || 
+                    artist.location.contains(selectedDistrict, ignoreCase = true)
             val matchesArtType = selectedArtType.isEmpty() || artist.artForm.contains(selectedArtType, ignoreCase = true)
             val matchesQuery = query.isEmpty() || 
                                artist.name.lowercase().contains(query) || 
@@ -140,11 +120,6 @@ class SearchActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_bookings -> {
-                    startActivity(Intent(this, BookingsActivity::class.java))
                     finish()
                     true
                 }

@@ -47,14 +47,6 @@ class UserProfileActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnMyBookings.setOnClickListener {
-            startActivity(Intent(this, BookingsActivity::class.java))
-        }
-
-        binding.btnAbout.setOnClickListener {
-            startActivity(Intent(this, AboutActivity::class.java))
-        }
-
         binding.btnLogout.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
@@ -99,11 +91,6 @@ class UserProfileActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_bookings -> {
-                    startActivity(Intent(this, BookingsActivity::class.java))
                     finish()
                     true
                 }
