@@ -24,7 +24,7 @@ class CreateTroupeActivity : AppCompatActivity() {
     private val storage = FirebaseStorage.getInstance()
     
     private var profileImageUri: Uri? = null
-    private var selectedPresetRes: String? = null
+    private var selectedPresetUrl: String? = null
     private val galleryImageUris = mutableListOf<Uri>()
     private val videoUris = mutableListOf<Uri>()
     
@@ -35,7 +35,7 @@ class CreateTroupeActivity : AppCompatActivity() {
     private val profileImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
             profileImageUri = uri
-            selectedPresetRes = null
+            selectedPresetUrl = null
             binding.ivTroupeImage.setImageURI(uri)
         }
     }
@@ -89,23 +89,36 @@ class CreateTroupeActivity : AppCompatActivity() {
     }
 
     private fun setupPresets() {
+        // High quality traditional troupe placeholders
+        val dolluUrl = "https://images.unsplash.com/photo-1582373468547-52646399ba71?auto=format&fit=crop&q=80&w=600"
+        val yakshaganaUrl = "https://images.unsplash.com/photo-1621360841013-c7683c659ec6?auto=format&fit=crop&q=80&w=600"
+        val veeragaseUrl = "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=600"
+
+        val img1 = binding.preset1.getChildAt(0) as android.widget.ImageView
+        val img2 = binding.preset2.getChildAt(0) as android.widget.ImageView
+        val img3 = binding.preset3.getChildAt(0) as android.widget.ImageView
+
+        Glide.with(this).load(dolluUrl).centerCrop().into(img1)
+        Glide.with(this).load(yakshaganaUrl).centerCrop().into(img2)
+        Glide.with(this).load(veeragaseUrl).centerCrop().into(img3)
+
         binding.preset1.setOnClickListener {
-            selectedPresetRes = "res/drawable/folk_banner"
+            selectedPresetUrl = dolluUrl
             profileImageUri = null
-            binding.ivTroupeImage.setImageResource(R.drawable.folk_banner)
-            Toast.makeText(this, "Banner theme selected", Toast.LENGTH_SHORT).show()
+            Glide.with(this).load(dolluUrl).into(binding.ivTroupeImage)
+            Toast.makeText(this, "Dollu Kunitha Theme Selected", Toast.LENGTH_SHORT).show()
         }
         binding.preset2.setOnClickListener {
-            selectedPresetRes = "res/drawable/about_banner"
+            selectedPresetUrl = yakshaganaUrl
             profileImageUri = null
-            binding.ivTroupeImage.setImageResource(R.drawable.about_banner)
-            Toast.makeText(this, "Traditional theme selected", Toast.LENGTH_SHORT).show()
+            Glide.with(this).load(yakshaganaUrl).into(binding.ivTroupeImage)
+            Toast.makeText(this, "Yakshagana Theme Selected", Toast.LENGTH_SHORT).show()
         }
         binding.preset3.setOnClickListener {
-            selectedPresetRes = "res/drawable/folk_illustration"
+            selectedPresetUrl = veeragaseUrl
             profileImageUri = null
-            binding.ivTroupeImage.setImageResource(R.drawable.folk_illustration)
-            Toast.makeText(this, "Illustration theme selected", Toast.LENGTH_SHORT).show()
+            Glide.with(this).load(veeragaseUrl).into(binding.ivTroupeImage)
+            Toast.makeText(this, "Veeragase Theme Selected", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -158,13 +171,7 @@ class CreateTroupeActivity : AppCompatActivity() {
 
                     val imageUrl = doc.getString("imageUrl")
                     if (!imageUrl.isNullOrEmpty()) {
-                        if (imageUrl.startsWith("res/")) {
-                             val resPath = imageUrl.substringAfter("res/")
-                             val resourceId = resources.getIdentifier(resPath, null, packageName)
-                             if (resourceId != 0) binding.ivTroupeImage.setImageResource(resourceId)
-                        } else {
-                             Glide.with(this).load(imageUrl).into(binding.ivTroupeImage)
-                        }
+                        Glide.with(this).load(imageUrl).into(binding.ivTroupeImage)
                     }
                 }
             }
@@ -214,10 +221,10 @@ class CreateTroupeActivity : AppCompatActivity() {
         }
 
         if (uploadTasks.isEmpty()) {
-            submitData(selectedPresetRes, emptyList(), emptyList())
+            submitData(selectedPresetUrl, emptyList(), emptyList())
         } else {
             Tasks.whenAllComplete(uploadTasks).addOnCompleteListener { 
-                var profileUrl = selectedPresetRes
+                var profileUrl = selectedPresetUrl
                 val galleryUrls = mutableListOf<String>()
                 val videoUrls = mutableListOf<String>()
 
@@ -278,7 +285,7 @@ class CreateTroupeActivity : AppCompatActivity() {
             "galleryImages" to galleryUrls,
             "galleryVideos" to videoUrls,
             "createdBy" to userId,
-            "status" to "approved", // Default approved for easy testing
+            "status" to "approved",
             "timestamp" to com.google.firebase.Timestamp.now()
         )
         
