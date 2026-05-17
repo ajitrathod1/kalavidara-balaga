@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     try {
                         val artist = document.toObject(Artist::class.java).copy(id = document.id)
                         // Filter out dummy/example troupes
-                        val dummyNames = listOf("Udupi", "Haveri", "Mysore", "Mysuru", "Chikkamagaluru", "Tumakuru")
+                        val dummyNames = listOf("Udupi", "Haveri", "Mysore", "Mysuru", "Chikkamagaluru", "Tumakuru", "Veera Karnataka", "Kedarlinga")
                         val isDummy = dummyNames.any { artist.name.contains(it, ignoreCase = true) }
                         
                         if (!isDummy) {
