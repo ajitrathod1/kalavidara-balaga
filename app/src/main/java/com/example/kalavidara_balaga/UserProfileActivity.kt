@@ -26,8 +26,10 @@ class UserProfileActivity : AppCompatActivity() {
         if (currentUser != null) {
             binding.tvUserEmail.text = currentUser.email ?: "No Email"
             
+            val photoUrl = currentUser.photoUrl
             Glide.with(this)
-                .load("https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&q=80&w=200")
+                .load(photoUrl ?: R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_background)
                 .circleCrop()
                 .into(binding.ivProfilePic)
 
