@@ -56,8 +56,11 @@ class ArtistProfileActivity : AppCompatActivity() {
                     // Profile Image & Banner
                     val imageUrl = artist.imageUrl
                     if (!imageUrl.isNullOrEmpty()) {
-                        Glide.with(this).load(imageUrl).placeholder(R.drawable.folk_banner).into(binding.ivArtistImage)
-                        Glide.with(this).load(imageUrl).placeholder(R.drawable.folk_banner).into(binding.ivArtistBanner)
+                        Glide.with(this).load(imageUrl).placeholder(R.drawable.about_banner).into(binding.ivArtistImage)
+                        Glide.with(this).load(imageUrl).placeholder(R.drawable.about_banner).into(binding.ivArtistBanner)
+                    } else {
+                        binding.ivArtistImage.setImageResource(R.drawable.placeholder_troupe)
+                        binding.ivArtistBanner.setImageResource(R.drawable.about_banner)
                     }
 
                     // Portfolio Gallery

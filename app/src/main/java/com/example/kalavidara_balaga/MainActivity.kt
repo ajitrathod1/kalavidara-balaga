@@ -50,7 +50,13 @@ class MainActivity : AppCompatActivity() {
                 for (document in result) {
                     try {
                         val artist = document.toObject(Artist::class.java).copy(id = document.id)
-                        artistList.add(artist)
+                        // Filter out dummy/example troupes
+                        val dummyNames = listOf("Udupi", "Haveri", "Mysore", "Mysuru", "Chikkamagaluru", "Tumakuru")
+                        val isDummy = dummyNames.any { artist.name.contains(it, ignoreCase = true) }
+                        
+                        if (!isDummy) {
+                            artistList.add(artist)
+                        }
                     } catch (e: Exception) {
                         Log.e("MainActivity", "Error parsing artist: ${document.id}", e)
                     }
