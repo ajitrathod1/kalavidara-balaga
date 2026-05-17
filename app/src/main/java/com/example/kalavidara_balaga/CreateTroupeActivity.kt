@@ -84,12 +84,13 @@ class CreateTroupeActivity : AppCompatActivity() {
         }
 
         binding.btnSubmitProfile.setOnClickListener {
-            startComplexUpload()
+            if (validateFields()) {
+                startComplexUpload()
+            }
         }
     }
 
     private fun setupPresets() {
-        // High quality traditional troupe placeholders
         val dolluUrl = "https://images.unsplash.com/photo-1582373468547-52646399ba71?auto=format&fit=crop&q=80&w=600"
         val yakshaganaUrl = "https://images.unsplash.com/photo-1621360841013-c7683c659ec6?auto=format&fit=crop&q=80&w=600"
         val veeragaseUrl = "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=600"
@@ -177,19 +178,70 @@ class CreateTroupeActivity : AppCompatActivity() {
             }
     }
 
+    private fun validateFields(): Boolean {
+        var isValid = true
+        
+        // Reset errors
+        binding.tilTroupeName.error = null
+        binding.tilArtForm.error = null
+        binding.tilDistrict.error = null
+        binding.tilLeadPerson.error = null
+        binding.tilPhone.error = null
+        binding.tilAbout.error = null
+        binding.tilExperience.error = null
+        binding.tilEquipment.error = null
+        binding.tilServiceArea.error = null
+
+        if (binding.etTroupeName.text.toString().trim().isEmpty()) {
+            binding.tilTroupeName.error = "Name is required"
+            isValid = false
+        }
+        if (binding.spinnerArtForm.text.toString().isEmpty()) {
+            binding.tilArtForm.error = "Art form is required"
+            isValid = false
+        }
+        if (binding.spinnerDistrict.text.toString().isEmpty()) {
+            binding.tilDistrict.error = "District is required"
+            isValid = false
+        }
+        if (binding.etLeadPerson.text.toString().trim().isEmpty()) {
+            binding.tilLeadPerson.error = "Lead person name is required"
+            isValid = false
+        }
+        val phone = binding.etPhone.text.toString().trim()
+        if (phone.isEmpty()) {
+            binding.tilPhone.error = "Phone number is required"
+            isValid = false
+        } else if (phone.length < 10) {
+            binding.tilPhone.error = "Enter valid 10-digit number"
+            isValid = false
+        }
+        if (binding.etAbout.text.toString().trim().isEmpty()) {
+            binding.tilAbout.error = "About section is required"
+            isValid = false
+        }
+        if (binding.spinnerExperience.text.toString().isEmpty()) {
+            binding.tilExperience.error = "Experience is required"
+            isValid = false
+        }
+        if (binding.etEquipment.text.toString().trim().isEmpty()) {
+            binding.tilEquipment.error = "Equipment list is required"
+            isValid = false
+        }
+        if (binding.etServiceArea.text.toString().trim().isEmpty()) {
+            binding.tilServiceArea.error = "Service area is required"
+            isValid = false
+        }
+
+        if (!isValid) {
+            Toast.makeText(this, "Please fix highlighted errors", Toast.LENGTH_SHORT).show()
+        }
+        
+        return isValid
+    }
+
     private fun startComplexUpload() {
         val userId = auth.currentUser?.uid ?: return
-        
-        val name = binding.etTroupeName.text.toString().trim()
-        val district = binding.spinnerDistrict.text.toString()
-        val artForm = binding.spinnerArtForm.text.toString()
-        val leadPerson = binding.etLeadPerson.text.toString()
-        val phone = binding.etPhone.text.toString()
-
-        if (name.isEmpty() || district.isEmpty() || artForm.isEmpty() || leadPerson.isEmpty() || phone.isEmpty()) {
-            Toast.makeText(this, "Please fill required fields", Toast.LENGTH_SHORT).show()
-            return
-        }
 
         binding.btnSubmitProfile.isEnabled = false
         binding.btnSubmitProfile.text = "Processing..."

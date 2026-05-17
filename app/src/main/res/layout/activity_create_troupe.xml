@@ -120,6 +120,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTroupeName"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,6 +149,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilArtForm"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -177,6 +179,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDistrict"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -206,6 +209,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilLeadPerson"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -234,6 +238,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPhone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -265,6 +270,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -294,6 +300,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAbout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -333,6 +340,7 @@
                         android:textStyle="bold"
                         android:textSize="13sp" />
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilExperience"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -411,6 +419,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEquipment"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -437,6 +446,7 @@
                 android:textSize="13sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilServiceArea"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
