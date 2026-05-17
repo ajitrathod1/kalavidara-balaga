@@ -7,10 +7,17 @@
     android:background="@color/background"
     tools:context=".UserProfileActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/search_bg"
+        android:alpha="0.3" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
+        android:background="@android:color/transparent"
         app:elevation="0dp">
 
         <RelativeLayout
@@ -23,8 +30,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="My Profile"
-                android:textColor="@color/white"
+                android:textColor="@color/primary"
                 android:textSize="28sp"
+                android:fontFamily="serif"
                 android:textStyle="bold" />
 
             <com.google.android.material.card.MaterialCardView
@@ -33,15 +41,15 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="#33FFFFFF">
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_back"
                     android:rotation="180"
-                    app:tint="@color/white" />
+                    app:tint="@color/primary" />
             </com.google.android.material.card.MaterialCardView>
         </RelativeLayout>
 
@@ -50,8 +58,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-20dp"
-        android:background="@drawable/bg_bottom_sheet_rounded"
         android:clipToPadding="false"
         android:paddingBottom="80dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -90,7 +96,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&amp;fit=crop&amp;q=80&amp;w=200" />
+                            android:src="@drawable/ic_launcher_background" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView

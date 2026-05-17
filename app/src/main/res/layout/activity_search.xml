@@ -7,10 +7,17 @@
     android:background="@color/background"
     tools:context=".SearchActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/search_bg"
+        android:alpha="0.2" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
+        android:background="@android:color/transparent"
         app:elevation="0dp">
 
         <LinearLayout
@@ -34,20 +41,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="All Artists"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:text="Traditional Troupes"
+                        android:textColor="@color/primary"
+                        android:fontFamily="serif"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/ivFavorite"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_favorite"
-                        app:tint="@color/black" />
                 </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
 
@@ -87,21 +85,6 @@
                             android:textColorHint="@color/grey_text"
                             android:inputType="text"/>
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardFilter"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="8dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="2dp">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:src="@android:drawable/ic_menu_preferences"
-                        app:tint="@color/primary" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 

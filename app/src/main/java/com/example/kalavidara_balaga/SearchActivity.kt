@@ -38,7 +38,14 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setupDistrictSpinner() {
-        val districts = arrayOf("All Districts", "Bangalore", "Mysore", "Belgaum", "Dharwad", "Udupi", "Hassan", "Tumakuru", "Shivamogga")
+        val districts = arrayOf(
+            "All Districts", "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", 
+            "Bidar", "Chamarajanagar", "Chikkaballapur", "Chikkamagaluru", "Chitradurga", 
+            "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Hassan", "Haveri", 
+            "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", 
+            "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayapura", 
+            "Yadgir", "Vijayanagara"
+        )
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, districts)
         binding.spinnerDistrict.setAdapter(adapter)
         

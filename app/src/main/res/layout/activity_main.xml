@@ -7,10 +7,17 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/search_bg"
+        android:alpha="0.3" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
+        android:background="@android:color/transparent"
         app:elevation="0dp">
 
         <LinearLayout
@@ -24,49 +31,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tvAppTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kalavidara Balaga"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="0dp"
-                        app:cardBackgroundColor="@color/maroon_alpha">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="4dp">
-                            <ImageView
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
-                                android:src="@drawable/ic_location"
-                                app:tint="@color/primary" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:text="Karnataka"
-                                android:textColor="@color/primary"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
+                    android:text="Kalavidara Balaga"
+                    android:textColor="@color/primary"
+                    android:textSize="28sp"
+                    android:fontFamily="serif"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivNotification"
@@ -123,7 +97,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Featured Troupes Section -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
