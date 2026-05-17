@@ -7,11 +7,18 @@
     android:background="@color/background"
     tools:context=".ArtistProfileActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/search_bg"
+        android:alpha="0.2" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
+        android:background="@android:color/transparent"
         app:elevation="0dp">
 
         <RelativeLayout
@@ -22,7 +29,7 @@
                 android:id="@+id/ivArtistBanner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.4"
+                android:alpha="0.5"
                 android:scaleType="centerCrop"
                 android:src="@drawable/folk_banner" />
 
@@ -83,40 +90,18 @@
                         android:layout_height="wrap_content"
                         android:text="Loading..."
                         android:textColor="@color/white"
-                        android:textSize="22sp"
+                        android:textSize="24sp"
+                        android:fontFamily="serif"
                         android:textStyle="bold" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvArtFormSub"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="4dp">
-                        <TextView
-                            android:id="@+id/tvArtFormSub"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Art Form"
-                            android:textColor="@color/white"
-                            android:textSize="16sp" />
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            app:cardBackgroundColor="@color/secondary"
-                            app:cardCornerRadius="4dp"
-                            app:cardElevation="0dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingHorizontal="6dp"
-                                android:paddingVertical="2dp"
-                                android:text="Verified ✓"
-                                android:textColor="@color/primary"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
-                        </com.google.android.material.card.MaterialCardView>
-                    </LinearLayout>
+                        android:text="Art Form"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -147,8 +132,6 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingBottom="100dp"
-        android:layout_marginTop="-30dp"
-        android:background="@drawable/bg_bottom_sheet_rounded"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -161,8 +144,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
                 app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
@@ -199,17 +182,6 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
-                        <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_events" app:tint="@color/primary" />
-                        <TextView android:id="@+id/tvEventsVal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="50+" android:textStyle="bold" android:textColor="@color/black" android:layout_marginTop="4dp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Events" android:textSize="10sp" android:textColor="@color/grey_text" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
                         <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@android:drawable/btn_star_big_on" app:tint="@color/primary" />
                         <TextView android:id="@+id/tvRatingVal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4.9" android:textStyle="bold" android:textColor="@color/black" android:layout_marginTop="4dp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rating" android:textSize="10sp" android:textColor="@color/grey_text" />
@@ -223,19 +195,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="About Troupe"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:fontFamily="serif"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvAboutFull"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Loading details..."
-                android:textColor="@color/grey_text"
-                android:lineSpacingExtra="4dp"
-                android:textSize="14sp" />
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
+                <TextView
+                    android:id="@+id/tvAboutFull"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Loading details..."
+                    android:textColor="@color/black"
+                    android:lineSpacingExtra="4dp"
+                    android:textSize="14sp" />
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Equipment -->
             <TextView
@@ -243,25 +224,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Instruments &amp; Equipment"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:fontFamily="serif"
                 android:textStyle="bold" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
-                app:cardBackgroundColor="@color/maroon_alpha">
+                app:cardBackgroundColor="@color/white">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
-                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_about" app:tint="@color/primary" />
-                    <TextView android:id="@+id/tvEquipment" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:text="--" android:textColor="@color/primary" android:textStyle="bold" android:textSize="14sp" />
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_about" app:tint="@color/primary" />
+                        <TextView android:id="@+id/tvEquipment" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:text="--" android:textColor="@color/black" android:textStyle="bold" android:textSize="15sp" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -271,17 +260,44 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Portfolio Gallery"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:fontFamily="serif"
                 android:textStyle="bold" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvGallery"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardGallery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:nestedScrollingEnabled="false"
-                tools:listitem="@layout/item_gallery_photo" />
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:padding="8dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvGallery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        tools:listitem="@layout/item_gallery_photo" />
+
+                    <TextView
+                        android:id="@+id/tvNoGallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="No portfolio photos uploaded yet."
+                        android:textColor="@color/grey_text"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -300,20 +316,22 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCallAction"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="56dp"
             android:layout_weight="1"
             android:text="Call Now"
             app:icon="@android:drawable/stat_sys_phone_call"
             app:iconTint="@color/white"
             android:textColor="@color/white"
+            android:fontFamily="serif"
+            android:textStyle="bold"
             android:backgroundTint="@color/primary"
-            app:cornerRadius="12dp" />
+            app:cornerRadius="16dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnWhatsAppAction"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="56dp"
             android:layout_weight="1"
             android:layout_marginStart="12dp"
             android:text="WhatsApp"
@@ -321,7 +339,9 @@
             app:iconTint="@color/success"
             android:textColor="@color/black"
             app:strokeColor="@color/divider"
-            app:cornerRadius="12dp" />
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            app:cornerRadius="16dp" />
 
     </LinearLayout>
 

@@ -51,38 +51,24 @@ class ArtistProfileActivity : AppCompatActivity() {
                     val exp = artist.experience
                     binding.tvExpVal.text = if (exp.contains("+") || exp.contains("Year")) exp else "$exp+"
                     binding.tvMembersVal.text = artist.membersCount.ifEmpty { artist.groupSize }.ifEmpty { "0" }
-                    binding.tvEventsVal.text = "50+" 
                     binding.tvRatingVal.text = "4.9"
 
                     // Profile Image & Banner
                     val imageUrl = artist.imageUrl
                     if (!imageUrl.isNullOrEmpty()) {
-                        if (imageUrl.startsWith("res/")) {
-                            val resPath = imageUrl.substringAfter("res/")
-                            val resourceId = resources.getIdentifier(resPath, null, packageName)
-                            if (resourceId != 0) {
-                                binding.ivArtistImage.setImageResource(resourceId)
-                                binding.ivArtistBanner.setImageResource(resourceId)
-                            } else {
-                                binding.ivArtistImage.setImageResource(R.drawable.folk_banner)
-                                binding.ivArtistBanner.setImageResource(R.drawable.folk_banner)
-                            }
-                        } else {
-                            Glide.with(this).load(imageUrl).placeholder(R.drawable.folk_banner).into(binding.ivArtistImage)
-                            Glide.with(this).load(imageUrl).placeholder(R.drawable.folk_banner).into(binding.ivArtistBanner)
-                        }
+                        Glide.with(this).load(imageUrl).placeholder(R.drawable.folk_banner).into(binding.ivArtistImage)
+                        Glide.with(this).load(imageUrl).placeholder(R.drawable.folk_banner).into(binding.ivArtistBanner)
                     }
 
-                    // Portfolio Gallery with StaggeredGridLayout
+                    // Portfolio Gallery
                     if (artist.galleryImages.isNotEmpty()) {
                         binding.rvGallery.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                         binding.rvGallery.adapter = GalleryAdapter(artist.galleryImages)
                         binding.rvGallery.visibility = View.VISIBLE
+                        binding.tvNoGallery.visibility = View.GONE
                     } else {
-                        // Show some dummy images if gallery is empty to fulfill requirement
-                        val dummyGallery = listOf("res/drawable/folk_banner", "res/drawable/about_banner", "res/drawable/folk_illustration")
-                        binding.rvGallery.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                        binding.rvGallery.adapter = GalleryAdapter(dummyGallery)
+                        binding.rvGallery.visibility = View.GONE
+                        binding.tvNoGallery.visibility = View.VISIBLE
                     }
 
                     // Contact Actions
